@@ -15,7 +15,10 @@ class Player
 		int score;
 
 	public:
-		//int calculaScore(int passos);
+		int calculaScore(int passos);
+		bool findSolution();
+		//Direction next_move();
+	
 	
 };
 

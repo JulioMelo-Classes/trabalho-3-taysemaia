@@ -21,27 +21,42 @@ class SnakeGame{
 
     private:
         //<! atributos adicione outros se quiser
+        std::vector<std::vector<std::string>> mazes;  //<! vector contendo todos os labirintos do arquivo
         std::vector<std::string> maze; //<! vector contendo o labirinto atual, pode ser interpretado como uma matriz
         int frameCount; //<! contador de frames, usado apenas como exemplo
         std::string choice; //<! usado na função process_actions para guardar a escolha do usuário
         GameStates state; //<! guarda o estado do jogo
         std::string file, modo;
         std::vector<int> informacoesJogo;
+        std::vector<Level> level;
+        std::vector<Player> player;
+        std::vector<Snake> snake;
+        int lvl; //<! variavel que diz qual o level atual
+        
+      
 
     public:
         /**
-         * 
-        * @brief construtor padrão, fique à vontade para adicionar parâmetros se desejar
+          @brief construtor 
+          @param file o arquivo a ser carregado
+          @param modo o modo do jogo (com ou sem rabo)
         **/
         SnakeGame(std::string file, std::string modo);
-
         /**
         * @brief chamado no main, este loop executa o jogo indefinidamente até que o usuário escolha terminar!
-        */
+        */     
         void loop();
+        /**
+        * @brief funçao pra mostrar na tela a introdução do jogo [tela inicial]
+        */ 
+        void printIntro();
 
     private:
+        /*! converte uma string em inteiro
+            @param str a string a ser convertida
+            @return a string convertida */
         int convertePraInteiro(std::string str);
+
         /**
         * @brief realiza a inicialização geral do jogo, fique à vontade para adicionar parâmetros se achar que deve
         **/
@@ -66,6 +81,7 @@ class SnakeGame{
         * @brief é chamada quando o jogo termina a fim de destruir/resetar elementos do estado do jogo
         **/
         void game_over();
+        
 };
 
 #endif //SnakeGame_h
