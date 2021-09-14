@@ -6,9 +6,13 @@
 #include <string>
 #include <vector>
 
-/*int Player::CalculaScore(int passos){
+int Player::calculaScore(int passos){
 
 	score = passos * 5;
 
 	return score;
-}*/
+}
+
+bool Player::findSolution(){
+	return true;
+}

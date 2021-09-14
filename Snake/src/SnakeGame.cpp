@@ -3,10 +3,11 @@
 #include <fstream>
 #include <stdlib.h>
 #include <chrono> //por causa do sleep
-#include <thread> //por causa do sleep2#include <iostream>
+#include <thread> //por causa do sleep2
 #include <sstream>
 #include <string>
 #include <vector>
+
 
 using namespace std;
 std::string file;
@@ -31,6 +32,7 @@ SnakeGame::SnakeGame(std::string file_, std::string modo){
 
 void SnakeGame::initialize_game(){
     //carrega o nivel ou os níveis
+    
     ifstream levelFile(file);
     int lineCount = 0;
     string line;
@@ -40,9 +42,9 @@ void SnakeGame::initialize_game(){
                 maze.push_back(line);
             }
             else if(lineCount == 0){
-                string tokenString = line;
+                string tokenString = line; //criei uma string e armazenei a primeira linha
                 // as sub-strings separadas vão ser colocadas neste vetor
-                vector<string> tokens;
+                vector<string> tokens; //criei um vector de string 
                 // stream de strings de input inicializado com a string a ser separada
                 istringstream tokenizer { tokenString };
                 // variável de trabalho
@@ -53,16 +55,36 @@ void SnakeGame::initialize_game(){
 
                 for(auto i : tokens){
                     informacoesJogo.push_back(convertePraInteiro(i));
+    
                 }
 
             }
-
             lineCount++;
+            
         }
-
-        Level level(informacoesJogo[0], informacoesJogo[1], informacoesJogo[2]);
-        Snake snake(modo); 
+        if(lineCount <= 2){
+            cout << "Arquivo sem labirinto, encerrando o programa..." << endl;
+            exit(1);
+        }
+        else if(lineCount > informacoesJogo[0] + 1){
+            cout << "existe outro lvl" << endl;
+        }
+        
+        mazes.push_back(maze);
+        printIntro();
+        Snake sn(modo);
+        snake.push_back(sn);
+        Level lvl(informacoesJogo[0], informacoesJogo[1], informacoesJogo[2], maze);
+        level.push_back(lvl);
+        Player plr;
+        player.push_back(plr);
+        level[0].randomStart();
+        level[0].adicionaCobra();
+        level[0].foodRandomStart();
+        level[0].adicionaComida();
+        level[0].mostrarInterface();
     }
+
     else{
         cout <<"O arquivo não existe" << endl;
         exit(1);   
@@ -100,7 +122,8 @@ void SnakeGame::update(){
                 state = GAME_OVER;
                 game_over();
             }
-            else{
+            else if(choice == "s"){
+                frameCount = 0;
                 //pode fazer alguma coisa antes de fazer isso aqui
                 state = RUNNING;
             }
@@ -109,6 +132,7 @@ void SnakeGame::update(){
             //nada pra fazer aqui
             break;
     }
+   
 }
 
 /**
@@ -137,10 +161,7 @@ void SnakeGame::render(){
     clearScreen();
     switch(state){
         case RUNNING:
-            //desenha todas as linhas do labirinto
-            for(auto line : maze){
-                cout<<line<<endl;
-            }
+            level[0].mostrarLabirinto();
             break;
         case WAITING_USER:
             cout<<"Você quer continuar com o jogo? (s/n)"<<endl;
@@ -149,6 +170,7 @@ void SnakeGame::render(){
             cout<<"O jogo terminou!"<<endl;
             break;
     }
+    
     frameCount++;
 }
 
@@ -165,3 +187,23 @@ void SnakeGame::loop(){
         wait(1000);// espera 1 segundo entre cada frame
     }
 }
+
+ void SnakeGame::printIntro()
+    {
+        std::stringstream ss;
+        ss <<   "*********************************************\n" <<
+                "*                                           *\n" <<
+                "*  ******  *     *  ******  ******  ******  *\n" <<
+                "*  *       * *   *  *    *      *   *       *\n" <<
+                "*  ******  *  *  *  * ** *    *     ****    *\n" <<
+                "*       *  *   * *  *    *  *       *       *\n" <<
+                "*  ******  *    **  *    *  ******  ******  *\n" <<
+                "*                                           *\n" <<
+                "*********************************************\n";
+
+        std::cout << ss.str() << std::endl;
+        cout << "Bem vindo ao Snaze!" << endl;
+        cout << "Carregando nível..." << endl;
+    
+        wait(5000);
+    }

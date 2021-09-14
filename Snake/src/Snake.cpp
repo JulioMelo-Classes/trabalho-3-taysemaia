@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
 
 Snake::Snake(std::string modo){
 	if(modo == "com-rabo"){
@@ -19,4 +21,3 @@ Snake::Snake(std::string modo){
 		exit(1);
 	}
 }
-
