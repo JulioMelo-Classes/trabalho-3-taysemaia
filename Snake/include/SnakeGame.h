@@ -26,11 +26,11 @@ class SnakeGame{
         int frameCount; //<! contador de frames, usado apenas como exemplo
         std::string choice; //<! usado na função process_actions para guardar a escolha do usuário
         GameStates state; //<! guarda o estado do jogo
-        std::string file, modo;
-        std::vector<int> informacoesJogo;
-        std::vector<Level> level;
-        std::vector<Player> player;
-        std::vector<Snake> snake;
+        std::string file, modo; //<! strings com o nome do arquivo e o tipo do jogo
+        std::vector<int> informacoesJogo; //<! vector com as informaçoes do labirinto (1 linha do arquivo)
+        std::vector<Level> level; //<! vector contendo os leveis
+        std::vector<Player> player; //<! vector contendo os players
+        std::vector<Snake> snake; //<! vector contendo as cobras (1 pra cada jogo)
         int lvl; //<! variavel que diz qual o level atual
         
       
