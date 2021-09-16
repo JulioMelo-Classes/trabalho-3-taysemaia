@@ -38,3 +38,51 @@ make
 
 * Tayse de Oliveira Maia
 * Karolayne Belo
+
+# Avaliação CP2
+
+## FindSolution.pacman
+
+O método find soluiton ou similar deve ser capaz de encontrar o conjunto de comandos que levam da posição atual da cobrinha até a posição da comida no modo pacman.
+
+**Avaiação**
+
+não implementado
+
+## FindSolution.snake
+
+O método find soluiton ou similar deve ser capaz de encontrar o conjunto de comandos que levam da posição atual da cobrinha até a posição da comida no modo snake.
+
+**Avaliação**
+
+não implementado
+
+## Random start
+
+Deveria ser implementado na execução do programa um comando que permita que a posição inicial seja sorteada aleatoriamente. A posição inicial precisa ser válida e não deve causar a cobrinha/pacman iniciar em uma posição encurralada.
+
+**Avaliação**
+
+70% não tem validação da posição!
+
+## Level Loop
+
+Deveria se implementado na execução do programa um comando que permite que os níveis fiquem se repetindo infinitamente, com a transição de mapas indo do primeiro nível até o último nível e voltando para o primeiro, de forma que seja mantida a contagem de pontos bem como a contagem de nível.
+
+**Avaliação**
+
+não implementado
+
+## Organização / Compilação automatizada / Casos de Teste
+
+Para a entrega final a organização do código em scr/data/include e compilação automatizada de alguma forma deve ser feita.
+
+**Avaliação**
+
+70% não foram feitos casos de teste
+
+## Documentação do código / Readme / Documentação de Casos de Teste
+
+**Avaliação**
+
+70% não foram documentados os casos de teste
